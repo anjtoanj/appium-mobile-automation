@@ -60,11 +60,4 @@ public final class AppLauncher {
         driver.executeScript("mobile: activateApp", arg);
     }
 
-    public static void close(AndroidDriver driver, String appId) {
-        try {
-            driver.executeScript("mobile: terminateApp", Collections.singletonMap("appId", appId));
-        } catch (RuntimeException wasNotRunning) {
-            // Terminating an app that is not running is not a problem.
-        }
-    }
 }

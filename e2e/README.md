@@ -1,16 +1,18 @@
 # ApiDemos E2E — Appium + Java + TestNG + Cucumber
 
+Interview Reference: https://claude.ai/code/artifact/32917098-b7d5-434c-8e75-64c815fe3d93
+
 Mobile test automation suite for the **Appium ApiDemos** app (`io.appium.android.apis`),
 which lives in the parent folder of this project.
 
-| Layer | Choice |
-|---|---|
-| Driver | Appium Java client 10.1.1 (UiAutomator2) |
-| Language | Java 17 |
-| Build | Maven |
-| Runner | TestNG 7.12.0 via Surefire |
-| BDD | Cucumber-JVM 7.34.7 (`cucumber-testng`) |
-| Design | Page Object Model with PageFactory (`@AndroidFindBy`) |
+| Layer    | Choice                                                |
+| -------- | ----------------------------------------------------- |
+| Driver   | Appium Java client 10.1.1 (UiAutomator2)              |
+| Language | Java 17                                               |
+| Build    | Maven                                                 |
+| Runner   | TestNG 7.12.0 via Surefire                            |
+| BDD      | Cucumber-JVM 7.34.7 (`cucumber-testng`)               |
+| Design   | Page Object Model with PageFactory (`@AndroidFindBy`) |
 
 ---
 
@@ -66,7 +68,7 @@ The Cucumber globs are relative to the workspace root, and the Java extension
 gets confused trying to import the Android Gradle project alongside this one.
 
 Install the recommended extensions when prompted, then
-Ctrl+Shift+P -> *Developer: Reload Window*.
+Ctrl+Shift+P -> _Developer: Reload Window_.
 
 ---
 
@@ -76,17 +78,17 @@ Everything lives in `src/test/resources/config/config.properties`. **Any key can
 overridden with `-D` on the command line**, which is what CI should do rather than
 editing the file.
 
-| Key | Default | Notes |
-|---|---|---|
-| `appium.server.url` | `http://127.0.0.1:4723` | Appium 2 base URL |
-| `device.name` | `Android Emulator` | |
-| `device.udid` | *(blank)* | Pin to a serial from `adb devices` |
-| `app.package` / `app.activity` | `io.appium.android.apis` / `.ApiDemos` | |
-| `app.path` | *(blank)* | Set to an APK path to reinstall each run; blank drives the installed copy |
-| `no.reset` | `true` | |
-| `element.timeout` | `15` | Seconds, used for every explicit wait |
-| `new.command.timeout` | `120` | Seconds. Raise it when debugging - Appium kills a session that is idle this long, including while you sit on a breakpoint |
-| `close.app.after.scenario` | `true` | Set false to leave the app on screen after a scenario |
+| Key                            | Default                                | Notes                                                                                                                     |
+| ------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `appium.server.url`            | `http://127.0.0.1:4723`                | Appium 2 base URL                                                                                                         |
+| `device.name`                  | `Android Emulator`                     |                                                                                                                           |
+| `device.udid`                  | _(blank)_                              | Pin to a serial from `adb devices`                                                                                        |
+| `app.package` / `app.activity` | `io.appium.android.apis` / `.ApiDemos` |                                                                                                                           |
+| `app.path`                     | _(blank)_                              | Set to an APK path to reinstall each run; blank drives the installed copy                                                 |
+| `no.reset`                     | `true`                                 |                                                                                                                           |
+| `element.timeout`              | `15`                                   | Seconds, used for every explicit wait                                                                                     |
+| `new.command.timeout`          | `120`                                  | Seconds. Raise it when debugging - Appium kills a session that is idle this long, including while you sit on a breakpoint |
+| `close.app.after.scenario`     | `true`                                 | Set false to leave the app on screen after a scenario                                                                     |
 
 ---
 
@@ -133,11 +135,11 @@ so this is cheap.
 
 ## Coverage
 
-| Feature | Screen | What it proves |
-|---|---|---|
-| `home_navigation` | Home list | All 11 categories render; a category opens and Back returns |
+| Feature                   | Screen                                  | What it proves                                                                                         |
+| ------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `home_navigation`         | Home list                               | All 11 categories render; a category opens and Back returns                                            |
 | `preference_dependencies` | Preference → 3. Preference dependencies | A dependent preference is disabled until its parent checkbox is ticked, and the entered value persists |
-| `alert_dialogs` | App → Alert Dialogs | A two-button dialog opens, exposes OK/Cancel, and dismisses |
+| `alert_dialogs`           | App → Alert Dialogs                     | A two-button dialog opens, exposes OK/Cancel, and dismisses                                            |
 
 Every string these tests assert on was read out of the app's own
 `AndroidManifest.xml` and `res/values/strings.xml`, not guessed — the category list
@@ -160,7 +162,7 @@ Two things this run settled:
    - `AppLauncher` calls `mobile: clearApp` before activating, so every scenario
      starts from empty app data.
    - `setChecked(title, desired)` reads the current state and taps only when it
-     needs to change. A tap on a persisted preference is a *toggle*, not a *set* -
+     needs to change. A tap on a persisted preference is a _toggle_, not a _set_ -
      writing the step the naive way makes results depend on execution order and
      on what the previous run left behind.
 
