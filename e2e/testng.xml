@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ApiDemos E2E" verbose="1">
+    <test name="Cucumber Scenarios">
+        <classes>
+            <class name="com.apidemos.e2e.runners.CucumberTestNGRunner"/>
+        </classes>
+    </test>
+</suite>

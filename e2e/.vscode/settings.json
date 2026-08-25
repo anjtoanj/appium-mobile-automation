@@ -1,0 +1,41 @@
+{
+  // ---------------------------------------------------------------- Java --
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "C:\\Program Files\\Java\\jdk-21.0.10",
+      "default": true
+    }
+  ],
+  "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-21.0.10",
+  "java.configuration.updateBuildConfiguration": "automatic",
+
+  // ------------------------------------------- Cucumber (official ext) --
+  // CucumberOpen.cucumber-official
+  // These globs are relative to the workspace root, so the folder you open in
+  // VS Code must be `e2e` - not android-apidemos.
+  "cucumber.features": [
+    "src/test/resources/features/**/*.feature"
+  ],
+  "cucumber.glue": [
+    "src/test/java/**/*.java"
+  ],
+
+  // ------------------------------- Cucumber (Gherkin) Full Support ext --
+  // alexkrechik.cucumberautocomplete - harmless if that extension is not
+  // installed. Kept alongside the official one because the two find step
+  // definitions differently and people get on better with one or the other.
+  "cucumberautocomplete.steps": [
+    "src/test/java/com/apidemos/e2e/steps/*.java"
+  ],
+  "cucumberautocomplete.syncfeatures": "src/test/resources/features/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": false,
+  "cucumberautocomplete.smartSnippets": true,
+  "cucumberautocomplete.stepsInvariants": true,
+  "cucumberautocomplete.onTypeFormat": true,
+
+  "files.exclude": {
+    "**/target": true
+  },
+  "editor.formatOnSave": false
+}

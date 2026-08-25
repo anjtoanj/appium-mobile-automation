@@ -1,0 +1,281 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.apidemos:apidemos-e2e >----------------------
+[INFO] Building ApiDemos Appium E2E 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ apidemos-e2e ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\anjto\ClonedProjects\android-apidemos\e2e\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.15.0:compile (default-compile) @ apidemos-e2e ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ apidemos-e2e ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 6 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.15.0:testCompile (default-testCompile) @ apidemos-e2e ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 15 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.6:test (default-test) @ apidemos-e2e ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+
+@dialogs @smoke
+Scenario: The OK/Cancel dialog opens and can be dismissed # src/test/resources/features/alert_dialogs.feature:13
+  Ô£ö Given the ApiDemos app is open on the home screen     # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö When I open the "App" category                        # com.apidemos.e2e.steps.NavigationSteps.iOpenTheCategory(java.lang.String)
+  Ô£ö And I open the "Alert Dialogs" demo                   # com.apidemos.e2e.steps.NavigationSteps.iOpenTheDemo(java.lang.String)
+  Ô£ö When I tap the "OK Cancel dialog with a message" row  # com.apidemos.e2e.steps.AlertDialogSteps.iTapTheRow(java.lang.String)
+  Ô£ö Then a dialog is displayed                            # com.apidemos.e2e.steps.AlertDialogSteps.aDialogIsDisplayed()
+  Ô£ö And the dialog positive button reads "OK"             # com.apidemos.e2e.steps.AlertDialogSteps.theDialogPositiveButtonReads(java.lang.String)
+  Ô£ö And the dialog negative button reads "Cancel"         # com.apidemos.e2e.steps.AlertDialogSteps.theDialogNegativeButtonReads(java.lang.String)
+  Ô£ö When I dismiss the dialog with the negative button    # com.apidemos.e2e.steps.AlertDialogSteps.iDismissTheDialogWithTheNegativeButton()
+  Ô£ö Then no dialog is displayed                           # com.apidemos.e2e.steps.AlertDialogSteps.noDialogIsDisplayed()
+
+@smoke @navigation @smoke
+Scenario: The home screen lists every top-level category # src/test/resources/features/home_navigation.feature:11
+  Ô£ö Given the ApiDemos app is open on the home screen    # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö Then the home screen shows the categories:           # com.apidemos.e2e.steps.NavigationSteps.theHomeScreenShowsTheCategories(io.cucumber.datatable.DataTable)
+      | Accessibility |
+      | Animation     |
+      | App           |
+      | Content       |
+      | Graphics      |
+      | Media         |
+      | NFC           |
+      | OS            |
+      | Preference    |
+      | Text          |
+      | Views         |
+
+@smoke @navigation
+Scenario: Opening the Preference category lists its demos # src/test/resources/features/home_navigation.feature:25
+  Ô£ö Given the ApiDemos app is open on the home screen     # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö When I open the "Preference" category                 # com.apidemos.e2e.steps.NavigationSteps.iOpenTheCategory(java.lang.String)
+  Ô£ö Then the list shows "1. Preferences from XML"         # com.apidemos.e2e.steps.NavigationSteps.theListShows(java.lang.String)
+  Ô£ö And the list shows "3. Preference dependencies"       # com.apidemos.e2e.steps.NavigationSteps.theListShows(java.lang.String)
+
+@smoke @navigation
+Scenario: Going back from a category returns to the home screen # src/test/resources/features/home_navigation.feature:30
+  Ô£ö Given the ApiDemos app is open on the home screen           # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö When I open the "Preference" category                       # com.apidemos.e2e.steps.NavigationSteps.iOpenTheCategory(java.lang.String)
+  Ô£ö And I navigate back                                         # com.apidemos.e2e.steps.NavigationSteps.iNavigateBack()
+  Ô£ö Then the list shows "Views"                                 # com.apidemos.e2e.steps.NavigationSteps.theListShows(java.lang.String)
+
+@preferences @smoke
+Scenario: WiFi settings stays disabled until WiFi is ticked # src/test/resources/features/preference_dependencies.feature:14
+  Ô£ö Given the ApiDemos app is open on the home screen       # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö When I open the "Preference" category                   # com.apidemos.e2e.steps.NavigationSteps.iOpenTheCategory(java.lang.String)
+  Ô£ö And I open the "3. Preference dependencies" demo        # com.apidemos.e2e.steps.NavigationSteps.iOpenTheDemo(java.lang.String)
+  Ô£ö Then the "WiFi settings" preference is disabled         # com.apidemos.e2e.steps.PreferenceSteps.thePreferenceIsDisabled(java.lang.String)
+  Ô£ÿ When I tick the "WiFi" checkbox                         # com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(java.lang.String)
+        org.openqa.selenium.WebDriverException: java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+        Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+        System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+        Driver info: io.appium.java_client.android.AndroidDriver
+        Command: [a212a024-e36f-4ebe-8a2c-a941e0c56876, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+        Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+        Session ID: a212a024-e36f-4ebe-8a2c-a941e0c56876
+        	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+        	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+        	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+        	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+        	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+        	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+        	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+        	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+        	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+        	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+        	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+        	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+        	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+        	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:16)
+  ÔåÀ Then the "WiFi settings" preference is enabled          # com.apidemos.e2e.steps.PreferenceSteps.thePreferenceIsEnabled(java.lang.String)
+Diagnostics: UI hierarchy -> C:\Users\anjto\ClonedProjects\android-apidemos\e2e\target\diagnostics\WiFi_settings_stays_disabled_until_WiFi_is_ticked-page.xml
+Diagnostics: screenshot   -> C:\Users\anjto\ClonedProjects\android-apidemos\e2e\target\diagnostics\WiFi_settings_stays_disabled_until_WiFi_is_ticked-screen.png
+
+        Embedding WiFi settings stays disabled until WiFi is ticked [image/png 46026 bytes]
+
+
+@preferences
+Scenario: A value entered for WiFi settings is kept        # src/test/resources/features/preference_dependencies.feature:19
+  Ô£ö Given the ApiDemos app is open on the home screen      # com.apidemos.e2e.steps.NavigationSteps.theAppIsOpenOnTheHomeScreen()
+  Ô£ö When I open the "Preference" category                  # com.apidemos.e2e.steps.NavigationSteps.iOpenTheCategory(java.lang.String)
+  Ô£ö And I open the "3. Preference dependencies" demo       # com.apidemos.e2e.steps.NavigationSteps.iOpenTheDemo(java.lang.String)
+  Ô£ÿ When I tick the "WiFi" checkbox                        # com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(java.lang.String)
+        org.openqa.selenium.WebDriverException: java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+        Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+        System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+        Driver info: io.appium.java_client.android.AndroidDriver
+        Command: [82740eb4-177d-4dec-8300-c97f779f4492, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+        Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+        Session ID: 82740eb4-177d-4dec-8300-c97f779f4492
+        	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+        	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+        	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+        	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+        	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+        	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+        	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+        	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+        	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+        	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+        	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+        	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+        	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+        	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:20)
+  ÔåÀ And I open the "WiFi settings" preference              # com.apidemos.e2e.steps.PreferenceSteps.iOpenThePreference(java.lang.String)
+  ÔåÀ And I enter "Home network" into the dialog and confirm # com.apidemos.e2e.steps.PreferenceSteps.iEnterIntoTheDialogAndConfirm(java.lang.String)
+  ÔåÀ And I open the "WiFi settings" preference              # com.apidemos.e2e.steps.PreferenceSteps.iOpenThePreference(java.lang.String)
+  ÔåÀ Then the dialog input contains "Home network"          # com.apidemos.e2e.steps.PreferenceSteps.theDialogInputContains(java.lang.String)
+Diagnostics: UI hierarchy -> C:\Users\anjto\ClonedProjects\android-apidemos\e2e\target\diagnostics\A_value_entered_for_WiFi_settings_is_kept-page.xml
+Diagnostics: screenshot   -> C:\Users\anjto\ClonedProjects\android-apidemos\e2e\target\diagnostics\A_value_entered_for_WiFi_settings_is_kept-screen.png
+
+        Embedding A value entered for WiFi settings is kept [image/png 46026 bytes]
+
+
+Failed scenarios:
+  1) WiFi settings stays disabled until WiFi is ticked # file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:14
+       org.openqa.selenium.WebDriverException: java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+       Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+       System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+       Driver info: io.appium.java_client.android.AndroidDriver
+       Command: [a212a024-e36f-4ebe-8a2c-a941e0c56876, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+       Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+       Session ID: a212a024-e36f-4ebe-8a2c-a941e0c56876
+       	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+       	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+       	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+       	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+       	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+       	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+       	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+       	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+       	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+       	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+       	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+       	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+       	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+       	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:16)
+
+  2) A value entered for WiFi settings is kept # file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:19
+       org.openqa.selenium.WebDriverException: java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+       Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+       System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+       Driver info: io.appium.java_client.android.AndroidDriver
+       Command: [82740eb4-177d-4dec-8300-c97f779f4492, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+       Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+       Session ID: 82740eb4-177d-4dec-8300-c97f779f4492
+       	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+       	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+       	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+       	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+       	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+       	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+       	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+       	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+       	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+       	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+       	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+       	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+       	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+       	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:20)
+
+
+6 scenarios (4 passed, 2 failed)
+51 steps (44 passed, 5 skipped, 2 failed)
+1m 15.651s
+[ERROR] Tests run: 6, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 77.61 s <<< FAILURE! -- in TestSuite
+[ERROR] com.apidemos.e2e.runners.CucumberTestNGRunner.runScenario["WiFi settings stays disabled until WiFi is ticked", "Preference dependencies"](5) -- Time elapsed: 13.37 s <<< FAILURE!
+org.openqa.selenium.WebDriverException: 
+java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [a212a024-e36f-4ebe-8a2c-a941e0c56876, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: a212a024-e36f-4ebe-8a2c-a941e0c56876
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:16)
+
+[ERROR] com.apidemos.e2e.runners.CucumberTestNGRunner.runScenario["A value entered for WiFi settings is kept", "Preference dependencies"](6) -- Time elapsed: 13.43 s <<< FAILURE!
+org.openqa.selenium.WebDriverException: 
+java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [82740eb4-177d-4dec-8300-c97f779f4492, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 82740eb4-177d-4dec-8300-c97f779f4492
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:196)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:243)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:653)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:173)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:417)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:411)
+	at com.apidemos.e2e.pages.PreferenceDependenciesPage.isChecked(PreferenceDependenciesPage.java:36)
+	at com.apidemos.e2e.pages.PreferenceDependenciesPage.setChecked(PreferenceDependenciesPage.java:47)
+	at com.apidemos.e2e.steps.PreferenceSteps.iTickTheCheckbox(PreferenceSteps.java:17)
+	at Ô£¢.I tick the "WiFi" checkbox(file:///C:/Users/anjto/ClonedProjects/android-apidemos/e2e/src/test/resources/features/preference_dependencies.feature:20)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   CucumberTestNGRunner.runScenario ┬╗ WebDriver java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [82740eb4-177d-4dec-8300-c97f779f4492, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 82740eb4-177d-4dec-8300-c97f779f4492
+[ERROR]   CucumberTestNGRunner.runScenario ┬╗ WebDriver java.util.ArrayList$ListItr cannot be cast to org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem.
+Build info: version: '4.47.0', revision: '9175ed9 9175ed94d83e87cc3abeb7c9fd91367d17849d35'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [a212a024-e36f-4ebe-8a2c-a941e0c56876, findElement {using=xpath, value=//android.widget.TextView[@text='WiFi']/following::*[@resource-id='android:id/checkbox'][1]}]
+Capabilities {appium:appActivity: .ApiDemos, appium:appPackage: io.appium.android.apis, appium:appWaitActivity: *, appium:appWaitPackage: io.appium.android.apis, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: .ApiDemos, appPackage: io.appium.android.apis, appWaitActivity: *, appWaitPackage: io.appium.android.apis, automationName: UiAutomator2, deviceName: Android Emulator, fullReset: false, newCommandTimeout: 120, noReset: true, platformName: ANDROID}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2280, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 120, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 11, appium:statBarHeight: 135, appium:takesScreenshot: true, appium:viewportRect: {height: 2145, left: 0, top: 135, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: a212a024-e36f-4ebe-8a2c-a941e0c56876
+[INFO] 
+[ERROR] Tests run: 6, Failures: 2, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:24 min
+[INFO] Finished at: 2026-08-25T13:00:33+10:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project apidemos-e2e: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\anjto\ClonedProjects\android-apidemos\e2e\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

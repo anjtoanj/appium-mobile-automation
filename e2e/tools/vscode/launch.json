@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Easiest path: start the tests with
+      //     mvn -Dmaven.surefire.debug test
+      // Maven prints "Listening for transport dt_socket at address:5005" and
+      // waits. Then launch this configuration to attach and start stepping.
+      "type": "java",
+      "name": "Attach to mvn surefire (5005)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    },
+    {
+      // Launches the TestNG suite directly from VS Code - no Maven, no attach
+      // dance. Press F5 and it stops at your breakpoints.
+      //
+      // The vmArgs matter:
+      //   new.command.timeout      Appium kills a session that sends no command
+      //                            for N seconds. The default 120 will drop the
+      //                            session while you sit on a breakpoint - an hour
+      //                            gives you room to think.
+      //   close.app.after.scenario Leaves the app on screen after the scenario so
+      //                            you can inspect the device state.
+      "type": "java",
+      "name": "Debug Cucumber suite (testng.xml)",
+      "request": "launch",
+      "mainClass": "org.testng.TestNG",
+      "projectName": "apidemos-e2e",
+      "args": ["testng.xml"],
+      "cwd": "${workspaceFolder}",
+      "vmArgs": "-Dnew.command.timeout=3600 -Dclose.app.after.scenario=false -Dlog.steps=true"
+    },
+    {
+      // Same, but only the scenarios tagged @preferences.
+      "type": "java",
+      "name": "Debug @preferences only",
+      "request": "launch",
+      "mainClass": "org.testng.TestNG",
+      "projectName": "apidemos-e2e",
+      "args": ["testng.xml"],
+      "cwd": "${workspaceFolder}",
+      "vmArgs": "-Dnew.command.timeout=3600 -Dclose.app.after.scenario=false -Dlog.steps=true -Dcucumber.filter.tags=@preferences"
+    }
+  ]
+}

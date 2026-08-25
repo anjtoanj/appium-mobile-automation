@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "e2e: run all scenarios",
+      "type": "shell",
+      "command": "mvn test",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "e2e: run @smoke only",
+      "type": "shell",
+      "command": "mvn test \"-Dcucumber.filter.tags=@smoke\"",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "e2e: run @preferences only",
+      "type": "shell",
+      "command": "mvn test \"-Dcucumber.filter.tags=@preferences\"",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "e2e: dry run (check every step is defined, no device needed)",
+      "type": "shell",
+      "command": "mvn test -Dcucumber.execution.dry-run=true",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "e2e: run leaving the app open (for debugging)",
+      "type": "shell",
+      "command": "mvn test -Dclose.app.after.scenario=false -Dnew.command.timeout=3600",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "e2e: open the Cucumber HTML report",
+      "type": "shell",
+      "command": "Start-Process target/cucumber-reports/cucumber.html",
+      "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-Command"] } },
+      "problemMatcher": []
+    },
+    {
+      "label": "appium: start server (logs to appium.log)",
+      "type": "shell",
+      "command": "appium --log-level debug --log ../appium.log",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
