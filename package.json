@@ -38,7 +38,7 @@
     "clean": "rm -rf node_modules && rm -f package-lock.json && npm install"
   },
   "devDependencies": {
-    "@appium/oxc-config": "^1.1.0",
+    "@appium/oxc-config": "^2.0.0",
     "@appium/semantic-release-config": "^1.1.0",
     "semver": "^7.3.7"
   },
